@@ -123,21 +123,47 @@ const Signin = () => {
 
   return (
     <div className="auth-container">
-      <h2>{isSignUp ? "회원가입" : "로그인"}</h2>
-      <InputField
-        type="email"
-        placeholder="아이디 (이메일)"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <InputField
-        type="password"
-        placeholder="비밀번호 (TMDb API 키)"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {isSignUp && (
-        <>
+      <div className={`auth-card ${isSignUp ? "flip" : ""}`}>
+        <div className="auth-front">
+          <h2>로그인</h2>
+          <InputField
+            type="email"
+            placeholder="아이디 (이메일)"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputField
+            type="password"
+            placeholder="비밀번호 (TMDb API 키)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <CheckboxField
+            label="Remember me"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+          />
+          <Button onClick={handleSignIn}>
+            로그인
+          </Button>
+          <Button onClick={toggleAuthMode}>
+            회원가입하기
+          </Button>
+        </div>
+        <div className="auth-back">
+          <h2>회원가입</h2>
+          <InputField
+            type="email"
+            placeholder="아이디 (이메일)"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputField
+            type="password"
+            placeholder="비밀번호 (TMDb API 키)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <InputField
             type="password"
             placeholder="비밀번호 확인"
@@ -149,19 +175,14 @@ const Signin = () => {
             checked={termsAccepted}
             onChange={() => setTermsAccepted(!termsAccepted)}
           />
-        </>
-      )}
-      <CheckboxField
-        label="Remember me"
-        checked={rememberMe}
-        onChange={() => setRememberMe(!rememberMe)}
-      />
-      <Button onClick={isSignUp ? handleSignUp : handleSignIn}>
-        {isSignUp ? "회원가입" : "로그인"}
-      </Button>
-      <Button onClick={toggleAuthMode}>
-        {isSignUp ? "로그인하기" : "회원가입하기"}
-      </Button>
+          <Button onClick={handleSignUp}>
+            회원가입
+          </Button>
+          <Button onClick={toggleAuthMode}>
+            로그인하기
+          </Button>
+        </div>
+      </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
