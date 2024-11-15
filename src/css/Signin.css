@@ -1,0 +1,47 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.input-field {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox-field {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.auth-button {
+  padding: 10px;
+  width: 100%;
+  margin-top: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #e50914;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.auth-button:hover {
+  background-color: #f40612;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
