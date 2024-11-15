@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Signin.css';
+import InputField from '../components/InputField';
+import CheckboxField from '../components/CheckboxField';
+import Button from '../components/Button';
+import '../css/Signin.css';
 
 const Signin = () => {
   const [isSignUp, setIsSignUp] = useState(false); // 로그인/회원가입 전환
@@ -25,6 +28,7 @@ const Signin = () => {
     const storedPassword = localStorage.getItem(email);
     if (storedPassword && storedPassword === password) {
       toast.success("로그인 성공!");
+      localStorage.setItem("isAuthenticated", true); // 로그인 상태 저장
       navigate('/');
     } else {
       toast.error("아이디 또는 비밀번호가 잘못되었습니다.");
@@ -44,21 +48,21 @@ const Signin = () => {
       toast.error("약관에 동의해야 합니다.");
       return;
     }
-    localStorage.setItem(email, password); // TMDB API 키를 사용해 저장할 수도 있음
+    localStorage.setItem(email, password); // 비밀번호 저장
     toast.success("회원가입 성공!");
-    setIsSignUp(false); // 회원가입 완료 후 로그인 창으로 전환
+    setIsSignUp(false); // 회원가입 완료 후 로그인 화면으로 전환
   };
 
   return (
     <div className="auth-container">
       <h2>{isSignUp ? "회원가입" : "로그인"}</h2>
-      <input
+      <InputField
         type="email"
         placeholder="아이디 (이메일)"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <InputField
         type="password"
         placeholder="비밀번호"
         value={password}
@@ -66,36 +70,30 @@ const Signin = () => {
       />
       {isSignUp && (
         <>
-          <input
+          <InputField
             type="password"
             placeholder="비밀번호 확인"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <label>
-            <input
-              type="checkbox"
-              checked={termsAccepted}
-              onChange={() => setTermsAccepted(!termsAccepted)}
-            />
-            약관에 동의합니다.
-          </label>
+          <CheckboxField
+            label="약관에 동의합니다."
+            checked={termsAccepted}
+            onChange={() => setTermsAccepted(!termsAccepted)}
+          />
         </>
       )}
-      <label>
-        <input
-          type="checkbox"
-          checked={rememberMe}
-          onChange={() => setRememberMe(!rememberMe)}
-        />
-        Remember me
-      </label>
-      <button onClick={isSignUp ? handleSignUp : handleSignIn}>
+      <CheckboxField
+        label="Remember me"
+        checked={rememberMe}
+        onChange={() => setRememberMe(!rememberMe)}
+      />
+      <Button onClick={isSignUp ? handleSignUp : handleSignIn}>
         {isSignUp ? "회원가입" : "로그인"}
-      </button>
-      <button onClick={toggleAuthMode}>
+      </Button>
+      <Button onClick={toggleAuthMode}>
         {isSignUp ? "로그인하기" : "회원가입하기"}
-      </button>
+      </Button>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
