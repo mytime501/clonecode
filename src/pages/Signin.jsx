@@ -7,6 +7,20 @@ import CheckboxField from '../components/CheckboxField';
 import Button from '../components/Button';
 import '../css/auth.css';
 
+// TMDb API 키 유효성 확인 함수
+const validateApiKey = async (apiKey) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/account?api_key=${apiKey}`);
+    if (response.ok) {
+      return true;  // 유효한 API 키
+    } else {
+      return false;  // 유효하지 않은 API 키
+    }
+  } catch (err) {
+    return false;  // API 요청 실패 시 유효하지 않은 키로 간주
+  }
+};
+
 // 로그인 처리 함수
 const tryLogin = (email, password, success, fail) => {
   const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -20,13 +34,19 @@ const tryLogin = (email, password, success, fail) => {
 };
 
 // 회원가입 처리 함수
-const tryRegister = (email, password, success, fail) => {
+const tryRegister = async (email, password, success, fail) => {
   try {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const userExists = users.some(existingUser => existingUser.id === email);
 
     if (userExists) {
       throw new Error('User already exists');
+    }
+
+    // TMDb API 키 유효성 검사
+    const isValidApiKey = await validateApiKey(password);
+    if (!isValidApiKey) {
+      throw new Error('유효한 TMDb API 키를 입력하세요.');
     }
 
     const newUser = { id: email, password: password };
@@ -112,7 +132,7 @@ const Signin = () => {
       />
       <InputField
         type="password"
-        placeholder="비밀번호"
+        placeholder="비밀번호 (TMDb API 키)"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
