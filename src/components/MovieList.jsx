@@ -18,6 +18,7 @@ const MovieList = ({ apiUrl, title }) => {
     fetchMovies();
   }, [apiUrl]);
 
+
   return (
     <div className="movie-list">
       <h2>{title}</h2>

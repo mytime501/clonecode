@@ -19,7 +19,7 @@ const Home = () => {
   }, []);
 
   const baseUrl = 'https://api.themoviedb.org/3';
-
+  
   const endpoints = {
     upcoming: `${baseUrl}/movie/upcoming?api_key=${apiKey}`,
     nowPlaying: `${baseUrl}/movie/now_playing?api_key=${apiKey}`,

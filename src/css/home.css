@@ -5,12 +5,58 @@ body {
     background-color: #f0f0f0;
   }
   
-  .header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-  }
+  /* Header 스타일링 */
+.header {
+  background-color: #1f1f1f; /* 어두운 배경 */
+  padding: 10px 20px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #333; /* 아래쪽 경계선 */
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px; /* 중앙 정렬을 위해 컨테이너 제한 */
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #e50914; /* 넷플릭스 스타일의 빨간색 */
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px; /* 메뉴 항목 간 간격 */
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: #e50914; /* 메뉴 항목 호버 시 빨간색 강조 */
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1); /* 호버 시 아이콘 크기 확대 */
+}
+
   
   .home-content {
     padding: 1rem;
