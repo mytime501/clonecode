@@ -10,7 +10,7 @@ import '../css/auth.css';
 // TMDb API 키 유효성 확인 함수
 const validateApiKey = async (apiKey) => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/account?api_key=${apiKey}`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/157336?api_key=${apiKey}`);
     if (response.ok) {
       return true;  // 유효한 API 키
     } else {
@@ -82,7 +82,7 @@ const Signin = () => {
       password,
       (user) => {
         toast.success("로그인 성공!");
-        localStorage.setItem("isAuthenticated", true); // 로그인 상태 저장
+        localStorage.setItem("isAuthenticated", JSON.stringify({ email, password })); // 로그인 상태 저장
         if (rememberMe) {
           localStorage.setItem("rememberMe", email); // 자동 로그인 아이디 저장
         }
