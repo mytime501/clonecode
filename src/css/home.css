@@ -1,19 +1,20 @@
-/* home.css */
+/* body 전체 배경을 어두운 색으로 변경 */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  }
-  
-  /* Header 스타일링 */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #181818; /* 어두운 배경 */
+  color: #fff; /* 전체 텍스트를 밝은 색으로 */
+}
+
+/* Header 스타일링 */
 .header {
-  background-color: #1f1f1f; /* 어두운 배경 */
+  background-color: #121212; /* 더 어두운 배경 */
   padding: 10px 20px;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #333; /* 아래쪽 경계선 */
+  border-bottom: 1px solid #333;
 }
 
 .header-container {
@@ -21,18 +22,19 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px; /* 중앙 정렬을 위해 컨테이너 제한 */
+  max-width: 1200px;
 }
 
 .logo {
   font-size: 1.5rem;
   color: #e50914; /* 넷플릭스 스타일의 빨간색 */
   font-weight: bold;
+  cursor: pointer;
 }
 
 .nav-menu {
   display: flex;
-  gap: 20px; /* 메뉴 항목 간 간격 */
+  gap: 20px;
 }
 
 .nav-item {
@@ -44,7 +46,7 @@ body {
 }
 
 .nav-item:hover {
-  color: #e50914; /* 메뉴 항목 호버 시 빨간색 강조 */
+  color: #e50914;
 }
 
 .profile-icon {
@@ -54,63 +56,98 @@ body {
 }
 
 .profile-icon:hover {
-  transform: scale(1.1); /* 호버 시 아이콘 크기 확대 */
+  transform: scale(1.1);
 }
 
-  
-  .home-content {
-    padding: 1rem;
-  }
-  
-  .movie-list {
-    margin: 2rem 0;
-  }
-  
-  .movie-list h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .movies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  
-  .movie-card {
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-  }
-  
-  .movie-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .movie-poster {
-    width: 100%;
-    height: auto;
-  }
-  
-  .movie-info {
-    padding: 1rem;
-  }
-  
-  .movie-title {
-    font-size: 1.2rem;
-    margin: 0 0 0.5rem;
-  }
-  
-  .movie-overview {
-    font-size: 0.9rem;
-    color: #555;
-    margin: 0 0 1rem;
-  }
-  
-  .movie-details,
-  .movie-genres {
-    font-size: 0.8rem;
-    color: #777;
-  }
-  
+/* 홈 콘텐츠 영역 */
+.home-content {
+  padding: 1rem;
+}
+
+/* 영화 리스트 스타일링 */
+.movie-list {
+  margin: 2rem 0;
+}
+
+.movie-list h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #fff; /* 제목도 밝은 색으로 */
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* 영화 카드 */
+.movie-card {
+  background-color: #2c2c2c; /* 어두운 카드 배경 */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 더 부드러운 그림자 */
+  transition: transform 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+}
+
+.movie-info {
+  padding: 1rem;
+}
+
+.movie-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  color: #fff; /* 제목 텍스트 색상 */
+}
+
+.movie-overview {
+  font-size: 0.9rem;
+  color: #ddd; /* 밝은 회색 텍스트 */
+  margin: 0 0 1rem;
+}
+
+.movie-details,
+.movie-genres {
+  font-size: 0.8rem;
+  color: #aaa; /* 연한 회색으로 세부사항 텍스트 */
+}
+
+/* home.css */
+.wishlist-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: color 0.3s;
+}
+
+.wishlist-btn:hover {
+  color: #e50914; /* 마우스를 올리면 빨간색으로 변경 */
+}
+
+.wishlist-btn.wished {
+  color: #e50914; /* 찜한 경우 빨간색 하트 표시 */
+}
+
+/* home.css */
+.wishlist-page {
+  padding: 20px;
+  background-color: #181818;
+  color: #fff;
+}
+
+.wishlist-movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}

@@ -3,7 +3,7 @@ import MovieCard from './MovieCard';
 
 const MovieList = ({ apiUrl, title }) => {
   const [movies, setMovies] = useState([]);
-
+  console.log(apiUrl);
   useEffect(() => {
     const fetchMovies = async () => {
       try {
