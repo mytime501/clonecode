@@ -21,9 +21,12 @@ const MovieCard = ({ movie, onUpdateWishlist }) => {
       const updatedWishlist = wishlist.filter((item) => item.id !== movie.id);
       localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
     } else {
-      // 찜한 영화를 추가
-      wishlist.push(movie);
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      // 찜한 영화가 이미 존재하지 않으면 추가
+      const isAlreadyInWishlist = wishlist.some((item) => item.id === movie.id);
+      if (!isAlreadyInWishlist) {
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      }
     }
 
     // 상태 업데이트
@@ -36,7 +39,7 @@ const MovieCard = ({ movie, onUpdateWishlist }) => {
   };
 
   return (
-    <div className="movie-card">
+    <div className="movie-card"  onClick={toggleWishlist}>
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
@@ -53,9 +56,7 @@ const MovieCard = ({ movie, onUpdateWishlist }) => {
           </p>
         )}
         {/* 찜하기 버튼 (하트) */}
-        <button className={`wishlist-btn ${isWished ? 'wished' : ''}`} onClick={toggleWishlist}>
-          {isWished ? '💖' : '🤍'}
-        </button>
+        <i className={`fa-heart ${isWished ? 'fas' : 'far'}`} style={{ fontSize: '24px' }}></i>
       </div>
     </div>
   );

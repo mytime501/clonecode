@@ -10,9 +10,12 @@ const Header = () => {
       <div className="header-container">
         {/* 로고 */}
         <div className="logo">
-          <span role="img" aria-label="logo" onClick={() => navigate("/")}>
-            🎥
-          </span>
+          <i 
+            className="fas fa-video" 
+            style={{ fontSize: '28px', cursor: 'pointer' }} 
+            onClick={() => navigate("/")}
+            aria-label="logo"
+          ></i>
         </div>
 
         {/* 메뉴 항목 */}
@@ -33,9 +36,12 @@ const Header = () => {
 
         {/* 프로필 아이콘 */}
         <div className="profile-icon">
-          <span role="img" aria-label="user" onClick={() => navigate("/Signin")}>
-            👤
-          </span>
+          <i 
+            className="fas fa-user" 
+            style={{ fontSize: '28px', cursor: 'pointer' }} 
+            onClick={() => navigate("/Signin")}
+            aria-label="user"
+          ></i>
         </div>
       </div>
     </header>
