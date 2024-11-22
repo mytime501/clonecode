@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Signin from './pages/Signin';
 import Home from './pages/Home';
 import Wishlist from './pages/Wishlist'; // 추가된 찜한 리스트 페이지 예시
+import Popular from './pages/Popular';
 
 function PrivateRoute({ children }) {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -24,6 +25,14 @@ function App() {
           element={
             <PrivateRoute>
               <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/popular"
+          element={
+            <PrivateRoute>
+              <Popular />
             </PrivateRoute>
           }
         />
