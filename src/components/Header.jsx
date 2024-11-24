@@ -23,7 +23,7 @@ const Header = () => {
           <Link to="/" className="nav-item">
             홈
           </Link>
-          <Link to="/categories" className="nav-item">
+          <Link to="/popular" className="nav-item">
             대세 콘텐츠
           </Link>
           <Link to="/search" className="nav-item">

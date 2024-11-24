@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import '../css/home.css';
 import Header from '../components/Header';
 
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      // 로그인이 되어있지 않으면 /signin으로 리디렉션
+      const isAuthenticatedString = localStorage.getItem('isAuthenticated');
+      const isAuthenticated = isAuthenticatedString ? JSON.parse(isAuthenticatedString) : null;
+      if (!isAuthenticated) {
+        navigate('/signin');
+      }
+    }, []);
+  
   
     // LocalStorage에서 찜한 영화 목록 불러오기
     const getWishlistFromLocalStorage = () => {

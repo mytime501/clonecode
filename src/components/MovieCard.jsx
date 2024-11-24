@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../css/home.css';
 
-const MovieCard = ({ movie, onUpdateWishlist }) => {
+const MovieCard = ({ movie, onUpdateWishlist, className, hideDetails }) => {
   const { poster_path, title, overview, vote_average, release_date, genres } = movie;
 
   // 찜한 영화인지 확인
@@ -39,7 +39,7 @@ const MovieCard = ({ movie, onUpdateWishlist }) => {
   };
 
   return (
-    <div className="movie-card"  onClick={toggleWishlist}>
+    <div className="movie-card" onClick={toggleWishlist}>
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
@@ -47,14 +47,21 @@ const MovieCard = ({ movie, onUpdateWishlist }) => {
       />
       <div className="movie-info">
         <h3 className="movie-title">{title}</h3>
-        <p className="movie-details">
-          평점: {vote_average} | 개봉일: {release_date}
-        </p>
-        {genres && (
-          <p className="movie-genres">
-            장르: {genres.map((genre) => genre.name).join(', ')}
-          </p>
+
+        {/* hideDetails가 true일 때 평점, 개봉일, 장르 정보 숨김 */}
+        {!hideDetails && (
+          <>
+            <p className="movie-details">
+              평점: {vote_average} | 개봉일: {release_date}
+            </p>
+            {genres && (
+              <p className="movie-genres">
+                장르: {genres.map((genre) => genre.name).join(', ')}
+              </p>
+            )}
+          </>
         )}
+
         {/* 찜하기 버튼 (하트) */}
         <i className={`fa-heart ${isWished ? 'fas' : 'far'}`} style={{ fontSize: '24px' }}></i>
       </div>
