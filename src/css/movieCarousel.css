@@ -35,3 +35,40 @@
     margin-top: 10px;
   }
   
+/* 모바일 스타일 */
+@media (max-width: 768px) {
+  .movied-carousel {
+    width: 90%; /* 너비를 화면 크기에 맞게 확장 */
+    padding: 10px; /* 패딩 축소 */
+    margin: 0 auto;
+  }
+
+  .movied-slide {
+    text-align: center;
+    color: white;
+  }
+
+  .movied-image {
+    width: 100%;
+    border-radius: 8px; /* 둥근 모서리 조금 줄임 */
+  }
+
+  .movied-info {
+    position: absolute;
+    bottom: 10px; /* 하단 여백 축소 */
+    left: 10px; /* 좌측 여백 축소 */
+    background: rgba(0, 0, 0, 0.7); /* 배경 투명도 약간 높임 */
+    padding: 8px 15px; /* 패딩 축소 */
+    border-radius: 4px; /* 둥근 모서리 축소 */
+  }
+
+  .movied-info h2 {
+    font-size: 18px; /* 제목 크기 축소 */
+    margin: 0;
+  }
+
+  .movied-info p {
+    font-size: 12px; /* 설명 텍스트 크기 축소 */
+    margin-top: 5px;
+  }
+}

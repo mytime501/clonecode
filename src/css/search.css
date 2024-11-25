@@ -89,3 +89,64 @@
 .delete-button:hover {
   text-decoration: underline;
 }
+
+
+
+
+/* 모바일 스타일 */
+@media (max-width: 768px) {
+  .search-container {
+    padding: 10px; /* 패딩 축소 */
+  }
+
+  .filter-bar {
+    flex-direction: column; /* 필터 바를 세로로 정렬 */
+    gap: 10px; /* 요소 간 간격 추가 */
+    align-items: stretch; /* 필터 바 항목을 동일 너비로 확장 */
+    margin-bottom: 15px; /* 하단 여백 축소 */
+  }
+
+  .filter-bar select,
+  .filter-bar input,
+  .filter-bar button {
+    margin: 0; /* 좌우 여백 제거 */
+    padding: 8px; /* 패딩 축소 */
+    font-size: 14px; /* 텍스트 크기 축소 */
+  }
+
+  .search-results {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 카드 크기 축소 */
+    gap: 15px; /* 카드 간 간격 축소 */
+  }
+
+  .search {
+    flex-direction: column; /* 검색 필드와 버튼을 세로로 정렬 */
+    align-items: stretch; /* 검색 필드와 버튼 너비를 동일하게 설정 */
+  }
+
+  .search-input {
+    width: unset; /* 검색 필드 너비를 100%로 확장 */
+    margin: 0 0 10px 0; /* 하단 여백 추가 */
+    padding: 6px; /* 패딩 축소 */
+  }
+
+  .search-button {
+    padding: 8px; /* 버튼 크기 축소 */
+    font-size: 14px; /* 텍스트 크기 축소 */
+  }
+
+  .recent-searches {
+    font-size: 14px; /* 텍스트 크기 축소 */
+    max-height: 150px; /* 최대 높이 축소 */
+    padding: 8px; /* 내부 여백 축소 */
+  }
+
+  .recent-search-item {
+    padding: 5px 8px; /* 항목 간격 축소 */
+    font-size: 14px; /* 텍스트 크기 축소 */
+  }
+
+  .delete-button {
+    font-size: 12px; /* 텍스트 크기 축소 */
+  }
+}

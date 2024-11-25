@@ -11,8 +11,7 @@ const Header = () => {
         {/* 로고 */}
         <div className="logo">
           <i 
-            className="fas fa-video" 
-            style={{ fontSize: '28px', cursor: 'pointer' }} 
+            className="fas fa-video logo-icon" 
             onClick={() => navigate("/")}
             aria-label="logo"
           ></i>
@@ -37,8 +36,7 @@ const Header = () => {
         {/* 프로필 아이콘 */}
         <div className="profile-icon">
           <i 
-            className="fas fa-user" 
-            style={{ fontSize: '28px', cursor: 'pointer' }} 
+            className="fas fa-user profile-icon-style"  
             onClick={() => navigate("/Signin")}
             aria-label="user"
           ></i>

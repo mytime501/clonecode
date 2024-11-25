@@ -84,6 +84,9 @@ const FilterBar = ({ filters, setFilters, onSearch, resetFilters }) => {
 
         <button onClick={resetFilters}>초기화</button>
 
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
         <div className="search">
           <input
             type="text"
@@ -120,12 +123,7 @@ const FilterBar = ({ filters, setFilters, onSearch, resetFilters }) => {
               ))}
             </div>
           )}
-        </div>        
-        
-        <button onClick={handleSearch} className="search-button">
-          Search
-        </button>
-
+        </div>
       </div>
     </div>
   );

@@ -92,7 +92,7 @@
 .infinite-scroll-view .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  gap: unset;
 }
 
 .loading-text {
@@ -124,4 +124,80 @@
 .scroll-to-top:hover {
   background-color: #c40812;
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+/* 모바일 스타일 */
+@media (max-width: 768px) {
+  .popular-container {
+    padding: 10px; /* 패딩 축소 */
+  }
+
+  /* View toggle buttons */
+  .view-toggle {
+    flex-direction: column; /* 버튼을 세로로 정렬 */
+    gap: 10px; /* 버튼 간 간격 추가 */
+  }
+
+  .view-toggle button {
+    padding: 8px 15px; /* 버튼 크기 축소 */
+    margin: 5px 0; /* 위아래 간격 추가 */
+    font-size: 14px; /* 버튼 텍스트 크기 축소 */
+  }
+
+  /* Table View */
+  .movie-row {
+    gap: 15px; /* 카드 간격 축소 */
+    margin-bottom: 15px; /* 하단 여백 축소 */
+  }
+
+  /* Table Grid Layout */
+  .table-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 카드 크기 축소 */
+    gap: 15px; /* 카드 간 간격 축소 */
+    padding: 10px; /* 내부 여백 축소 */
+  }
+
+  .table-item {
+    border-radius: 6px; /* 둥근 모서리 조금 축소 */
+  }
+
+  .table-item img {
+    border-bottom: 1px solid #555; /* 구분선 색상 조정 */
+  }
+
+  .movie-title {
+    font-size: 12px; /* 텍스트 크기 축소 */
+    padding: 5px; /* 여백 축소 */
+  }
+
+  /* Movie Card Wrapper */
+  .movie-card-wrapper {
+    flex: 0 1 45%; /* 한 줄에 2개 카드 배치 */
+    max-width: 150px; /* 카드 크기 축소 */
+  }
+
+  .movie-card-wrapper img {
+    border-radius: 6px; /* 둥근 모서리 축소 */
+  }
+
+  /* Infinite Scroll View */
+  .infinite-scroll-view .movies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); /* 카드 크기 조정 */
+    gap: unset;
+  }
+
+  /* Scroll To Top Button */
+  .scroll-to-top {
+    bottom: 15px; /* 하단 여백 축소 */
+    right: 15px; /* 오른쪽 여백 축소 */
+    width: 40px; /* 크기 축소 */
+    height: 40px; /* 크기 축소 */
+  }
+
+  .scroll-to-top:hover {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 크기 조정 */
+  }
 }
