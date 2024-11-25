@@ -36,7 +36,6 @@ const FilterBar = ({ filters, setFilters, applyFilters, resetFilters }) => {
         onChange={handleInputChange}
       />
 
-      <button onClick={applyFilters}>필터 적용</button>
       <button onClick={resetFilters}>초기화</button>
     </div>
   );
