@@ -15,7 +15,7 @@ const Wishlist = () => {
       if (!isAuthenticated) {
         navigate('/signin');
       }
-    }, []);
+    }, [navigate]);
   
   
     // LocalStorage에서 찜한 영화 목록 불러오기

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../css/home.css';
 
 const MovieCard = ({ movie, onUpdateWishlist, className, hideDetails }) => {
-  const { poster_path, title, overview, vote_average, release_date, genres } = movie;
+  const { poster_path, title, vote_average, release_date, genres } = movie;
 
   // 찜한 영화인지 확인
   const isInWishlist = () => {

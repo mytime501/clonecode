@@ -1,0 +1,37 @@
+.movied-carousel {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .movied-slide {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  .movied-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .movied-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .movied-info h2 {
+    font-size: 24px;
+    margin: 0;
+    color:rgb(255, 255, 255);
+  }
+  
+  .movied-info p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  

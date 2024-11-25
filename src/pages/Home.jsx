@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
+import MovieCarousel from '../components/MovieCarousel';
 
 const Home = () => {
   const navigate = useNavigate();
   const [apiKey, setApiKey] = useState("");
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     // 로그인이 되어있지 않으면 /signin으로 리디렉션
@@ -17,14 +19,29 @@ const Home = () => {
     else{
       navigate('/signin');
     }
-  }, []);
+  }, [navigate]);
 
   const baseUrl = 'https://api.themoviedb.org/3';
   
+
+  useEffect(() => {
+    if (apiKey) {
+      const fetchMovies = async () => {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
+        );
+        const data = await response.json();
+        setMovies(data.results.slice(0, 7)); // 상위 7개 영화만 가져옴
+      };
+
+      fetchMovies();
+    }
+  }, [apiKey]);
+
   const endpoints = {
     upcoming: `${baseUrl}/movie/upcoming?api_key=${apiKey}`,
     nowPlaying: `${baseUrl}/movie/now_playing?api_key=${apiKey}`,
-    popular: `${baseUrl}/movie?api_key=${apiKey}`,
+    popular: `${baseUrl}/movie/popular?api_key=${apiKey}&page=2`,
     topRated: `${baseUrl}/movie/top_rated?api_key=${apiKey}`
   };
 
@@ -34,7 +51,8 @@ const Home = () => {
       <div>
         <Header />
         <div className="home-content">
-          <MovieList apiUrl={endpoints.upcoming} title="개봉 예정 영화" />
+          <MovieCarousel movies={movies} />
+          <MovieList apiUrl={endpoints.upcoming} title="최신 영화" />
           <MovieList apiUrl={endpoints.nowPlaying} title="현재 상영 중" />
           <MovieList apiUrl={endpoints.popular} title="인기 영화" />
           <MovieList apiUrl={endpoints.topRated} title="높은 평점 영화" />
