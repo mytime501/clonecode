@@ -23,9 +23,9 @@ const InfiniteScrollView = ({ apiKey, baseurl, fullurl, check }) => {
         let response;
         // fullurl이 제공되었으면 해당 URL 사용
         if (fullurl) {
-          response = await fetch(`${fullurl}&page=${page}`);
+          response = await fetch(`${fullurl}&page=${page}&language=ko-KR`);
         } else {
-          response = await fetch(`${BASE_URL}?api_key=${apiKey}&page=${page}`);
+          response = await fetch(`${BASE_URL}?api_key=${apiKey}&page=${page}&language=ko-KR`);
         }
 
         if (!response.ok) {

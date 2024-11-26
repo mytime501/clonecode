@@ -4,6 +4,7 @@ import FilterBar from "../components/FilterBar";
 import InfiniteScrollView from "../components/InfiniteScrollView";
 import "../css/search.css";
 import Header from "../components/Header";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const Search = () => {
   const [filteredMovies, setFilteredMovies] = useState(""); // 필터링된 또는 검색된 영화 URL
@@ -79,6 +80,7 @@ const Search = () => {
           onSearch={handleSearch} // 검색 함수 전달
         />
         <InfiniteScrollView fullurl={filteredMovies} />
+        <ScrollToTopButton />
       </div>
     </div>
   );

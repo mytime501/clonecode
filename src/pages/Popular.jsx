@@ -7,15 +7,11 @@ import Header from '../components/Header';
 import "../css/popular.css";
 
 const Popular = () => {
-  const [movies, setMovies] = useState([]);
   const [viewType, setViewType] = useState("infinite");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
   const [apiKey, setApiKey] = useState("");
-  const [moviesPerPage, setMoviesPerPage] = useState(0);
-
-  const containerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = useRef(null);
   const check = true
 
   // 인증 상태 확인 및 API 키 설정
@@ -39,7 +35,6 @@ const Popular = () => {
         console.error("API Key is missing!");
         return;
       }
-
       try {
         const response = await fetch(`${BASE_URL}?api_key=${apiKey}&page=${page}`);
         const data = await response.json();
@@ -48,59 +43,29 @@ const Popular = () => {
           console.error("Error fetching movies:", data);
           return;
         }
-
-        if (data.results) {
-          setMovies(data.results);
-
-          // 동적으로 총 페이지 수 계산
-          const totalMovieCount = data.total_results;
-          setTotalPages(Math.ceil(totalMovieCount / moviesPerPage));
-        } else {
-          console.error("Unexpected API response:", data);
-          setMovies([]);
-        }
       } catch (error) {
         console.error("Error fetching movies:", error);
-        setMovies([]);
       }
     },
-    [apiKey, moviesPerPage] // 의존성 배열에 필요한 값 포함
+    [apiKey] // 의존성 배열에 필요한 값 포함
   );
 
   useEffect(() => {
     if (apiKey) {
-      fetchMovies(currentPage);
+      fetchMovies();
     }
-  }, [apiKey, currentPage, fetchMovies]);
+  }, [apiKey, fetchMovies]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  // 화면 크기에 따라 영화 개수 계산
   useEffect(() => {
-    const calculateMoviesPerPage = () => {
-      const containerWidth = containerRef.current ? containerRef.current.offsetWidth : window.innerWidth;
-      const movieWidth = 200;
-      const moviesPerRow = Math.floor(containerWidth / movieWidth);
-
-      if (moviesPerRow > 0) {
-        setMoviesPerPage(moviesPerRow * 3);
-      } else {
-        setMoviesPerPage(0);
-      }
-    };
-
-    calculateMoviesPerPage();
-    window.addEventListener("resize", calculateMoviesPerPage);
-
-    return () => window.removeEventListener("resize", calculateMoviesPerPage);
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight); // Header의 높이 설정
+    }
   }, []);
 
   return (
     <div>
-      <Header />
-      <div className="popular-container" ref={containerRef}>
+      <Header ref={headerRef} />
+      <div className="popular-container">
         <div className="view-toggle">
           <button onClick={() => setViewType("table")} className={viewType === "table" ? "active" : ""}>
             Table View
@@ -112,11 +77,9 @@ const Popular = () => {
 
         {viewType === "table" ? (
           <TableView
-            movies={movies}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            fetchMovies={fetchMovies}
+            apiKey={apiKey}
+            baseurl={BASE_URL}
+            headerHeight={headerHeight}       
           />
         ) : (
           <InfiniteScrollView

@@ -28,7 +28,7 @@ const Home = () => {
     if (apiKey) {
       const fetchMovies = async () => {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko-KR`
         );
         const data = await response.json();
         setMovies(data.results.slice(0, 7)); // 상위 7개 영화만 가져옴
@@ -39,10 +39,10 @@ const Home = () => {
   }, [apiKey]);
 
   const endpoints = {
-    upcoming: `${baseUrl}/movie/upcoming?api_key=${apiKey}`,
-    nowPlaying: `${baseUrl}/movie/now_playing?api_key=${apiKey}`,
-    popular: `${baseUrl}/movie/popular?api_key=${apiKey}&page=2`,
-    topRated: `${baseUrl}/movie/top_rated?api_key=${apiKey}`
+    upcoming: `${baseUrl}/movie/upcoming?api_key=${apiKey}&language=ko-KR`,
+    nowPlaying: `${baseUrl}/movie/now_playing?api_key=${apiKey}&language=ko-KR`,
+    popular: `${baseUrl}/movie/popular?api_key=${apiKey}&page=2&language=ko-KR`,
+    topRated: `${baseUrl}/movie/top_rated?api_key=${apiKey}&language=ko-KR`
   };
 
   if(apiKey)

@@ -1,18 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../css/movieCarousel.css'; // CSS를 별도로 생성해 스타일링
+import '../css/movieCarousel.css';
 
 const MovieCarousel = ({ movies }) => {
+  const [maxLength, setMaxLength] = useState(100); // 초기값을 100으로 설정
+
   const settings = {
-    dots: true, // 하단에 네비게이션 점 추가
-    infinite: true, // 무한 루프 슬라이드
-    speed: 500, // 슬라이드 속도 (ms)
-    slidesToShow: 1, // 한 번에 보여줄 영화 수
-    slidesToScroll: 1, // 한 번에 넘길 슬라이드 수
-    autoplay: true, // 자동 슬라이드 활성화
-    autoplaySpeed: 2000, // 자동 슬라이드 간격 (2초)
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
+
+  // 화면 크기에 따라 maxLength 값을 동적으로 변경
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setMaxLength(50); // 모바일에서는 50자
+    } else {
+      setMaxLength(100); // PC에서는 100자
+    }
+  };
+
+  // 화면 크기 변경 시마다 handleResize를 호출하여 maxLength 갱신
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize); // 리사이즈 이벤트 리스너 추가
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // 컴포넌트가 unmount될 때 리스너 제거
+    };
+  }, []);
+
+  const truncateText = (text) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
   };
 
   return (
@@ -27,7 +55,7 @@ const MovieCarousel = ({ movies }) => {
             />
             <div className="movied-info">
               <h2>{movie.title}</h2>
-              <p>{movie.overview}</p>
+              <p>{truncateText(movie.overview)}</p>
             </div>
           </div>
         ))}

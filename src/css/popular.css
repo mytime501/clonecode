@@ -38,7 +38,7 @@
 .movie-row {
   display: flex;
   flex-wrap: wrap; /* 여러 줄로 나뉘게 설정 */
-  justify-content: center; /* 카드들을 가운데 정렬 */
+  justify-content: space-evenly; /* 카드들을 가운데 정렬 */
   gap: 20px; /* 카드 간 간격 */
   width: 100%; /* 가로 너비를 화면 전체로 설정 */
   margin-bottom: 20px;
@@ -90,9 +90,10 @@
 
 /* Infinite Scroll View */
 .infinite-scroll-view .movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: unset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .loading-text {
@@ -185,8 +186,7 @@
 
   /* Infinite Scroll View */
   .infinite-scroll-view .movies-grid {
-    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); /* 카드 크기 조정 */
-    gap: unset;
+    gap: 15px;
   }
 
   /* Scroll To Top Button */
