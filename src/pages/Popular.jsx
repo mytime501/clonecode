@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
 import TableView from "../components/TableView";
 import InfiniteScrollView from "../components/InfiniteScrollView";
 import ScrollToTopButton from "../components/ScrollToTopButton";
@@ -7,24 +6,19 @@ import Header from '../components/Header';
 import "../css/popular.css";
 
 const Popular = () => {
-  const [viewType, setViewType] = useState("infinite");
-  const navigate = useNavigate();
+  const [viewType, setViewType] = useState("table");
   const [apiKey, setApiKey] = useState("");
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const headerRef = useRef(null);
   const check = true
 
   // 인증 상태 확인 및 API 키 설정
   useEffect(() => {
+    // 로그인이 되어있지 않으면 /signin으로 리디렉션
     const isAuthenticatedString = localStorage.getItem('isAuthenticated');
     const isAuthenticated = isAuthenticatedString ? JSON.parse(isAuthenticatedString) : null;
-
     if (isAuthenticated) {
       setApiKey(isAuthenticated.password);
-    } else {
-      navigate('/signin');
     }
-  }, [navigate]);
+  }, []);
 
   // 영화 데이터를 가져오는 함수 (useCallback 사용)
   const BASE_URL = "https://api.themoviedb.org/3/movie/popular";
@@ -56,15 +50,9 @@ const Popular = () => {
     }
   }, [apiKey, fetchMovies]);
 
-  useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.offsetHeight); // Header의 높이 설정
-    }
-  }, []);
-
   return (
     <div>
-      <Header ref={headerRef} />
+      <Header/>
       <div className="popular-container">
         <div className="view-toggle">
           <button onClick={() => setViewType("table")} className={viewType === "table" ? "active" : ""}>
@@ -78,8 +66,7 @@ const Popular = () => {
         {viewType === "table" ? (
           <TableView
             apiKey={apiKey}
-            baseurl={BASE_URL}
-            headerHeight={headerHeight}       
+            baseurl={BASE_URL}      
           />
         ) : (
           <InfiniteScrollView

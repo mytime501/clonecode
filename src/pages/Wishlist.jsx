@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import '../css/home.css';
 import Header from '../components/Header';
 
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      // 로그인이 되어있지 않으면 /signin으로 리디렉션
-      const isAuthenticatedString = localStorage.getItem('isAuthenticated');
-      const isAuthenticated = isAuthenticatedString ? JSON.parse(isAuthenticatedString) : null;
-      if (!isAuthenticated) {
-        navigate('/signin');
-      }
-    }, [navigate]);
-  
   
     // LocalStorage에서 찜한 영화 목록 불러오기
     const getWishlistFromLocalStorage = () => {
@@ -38,7 +26,7 @@ const Wishlist = () => {
     <div>
         <Header/>
         <div className="wishlist-page">
-            <h2>내가 찜한 리스트</h2>
+            <h2 className="hfont">내가 찜한 리스트</h2>
             {/* 찜한 영화 목록이 있을 때 테이블로 출력 */}
             {wishlist.length > 0 ? (
                 <div className="wishlist-movie-list">
@@ -47,6 +35,10 @@ const Wishlist = () => {
                     key={movie.id}
                     movie={movie}
                     onUpdateWishlist={updateWishlist} // 상태 갱신 함수 전달
+                    hideDetails={true}
+                    className="wishlist-movie-card"
+                    isWishlist1={true}
+                    isWishlist2={true}
                     />
                 ))}
                 </div>

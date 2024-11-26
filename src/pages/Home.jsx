@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
 import MovieCarousel from '../components/MovieCarousel';
 
 const Home = () => {
-  const navigate = useNavigate();
   const [apiKey, setApiKey] = useState("");
   const [movies, setMovies] = useState([]);
 
@@ -16,10 +14,7 @@ const Home = () => {
     if (isAuthenticated) {
       setApiKey(isAuthenticated.password);
     }
-    else{
-      navigate('/signin');
-    }
-  }, [navigate]);
+  }, []);
 
   const baseUrl = 'https://api.themoviedb.org/3';
   

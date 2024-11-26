@@ -38,7 +38,7 @@
 .movie-row {
   display: flex;
   flex-wrap: wrap; /* 여러 줄로 나뉘게 설정 */
-  justify-content: space-evenly; /* 카드들을 가운데 정렬 */
+  justify-content: center; /* 카드들을 가로로 가운데 정렬 */
   gap: 20px; /* 카드 간 간격 */
   width: 100%; /* 가로 너비를 화면 전체로 설정 */
   margin-bottom: 20px;

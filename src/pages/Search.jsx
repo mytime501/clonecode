@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import FilterBar from "../components/FilterBar";
 import InfiniteScrollView from "../components/InfiniteScrollView";
 import "../css/search.css";
@@ -9,7 +8,6 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 const Search = () => {
   const [filteredMovies, setFilteredMovies] = useState(""); // 필터링된 또는 검색된 영화 URL
   const [apiKey, setApiKey] = useState("");
-  const navigate = useNavigate();
   const [filters, setFilters] = useState({
     genre: "",
     rating: "",
@@ -19,15 +17,13 @@ const Search = () => {
 
   // 인증 처리 및 API 키 설정
   useEffect(() => {
-    const isAuthenticatedString = localStorage.getItem("isAuthenticated");
+    // 로그인이 되어있지 않으면 /signin으로 리디렉션
+    const isAuthenticatedString = localStorage.getItem('isAuthenticated');
     const isAuthenticated = isAuthenticatedString ? JSON.parse(isAuthenticatedString) : null;
-
     if (isAuthenticated) {
       setApiKey(isAuthenticated.password);
-    } else {
-      navigate("/signin");
     }
-  }, [navigate]);
+  }, []);
 
   // 필터를 기반으로 API 호출
   useEffect(() => {

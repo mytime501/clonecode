@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import '../css/home.css';
 
-const MovieCard = ({ movie, onUpdateWishlist, className, hideDetails }) => {
+const MovieCard = ({ movie, onUpdateWishlist, className, hideDetails, isWishlist1, isWishlist2 }) => {
   const { poster_path, title, vote_average, release_date, genres } = movie;
-
+  const titleClass = isWishlist1 ? 'wishlist-movie-title' : 'movie-title';
+  const cardClass = isWishlist2 ? 'wishlist-movie-card' : 'movie-card';
+  
   // 찜한 영화인지 확인
   const isInWishlist = () => {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -39,14 +41,14 @@ const MovieCard = ({ movie, onUpdateWishlist, className, hideDetails }) => {
   };
 
   return (
-    <div className="movie-card" onClick={toggleWishlist}>
+    <div className={cardClass} onClick={toggleWishlist}>
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
         className="movie-poster"
       />
       <div className="movie-info">
-        <h3 className="movie-title">{title}</h3>
+        <h3 className={titleClass}>{title}</h3>
 
         {/* hideDetails가 true일 때 평점, 개봉일, 장르 정보 숨김 */}
         {!hideDetails && (

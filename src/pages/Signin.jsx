@@ -71,28 +71,37 @@ const Signin = () => {
 
   const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
+
+  
   const handleSignIn = () => {
     if (!validateEmail(email)) {
       toast.error("유효한 이메일을 입력하세요.");
       return;
     }
-
+  
     tryLogin(
       email,
       password,
       (user) => {
-        toast.success("로그인 성공!");
-        localStorage.setItem("isAuthenticated", JSON.stringify({ email, password })); // 로그인 상태 저장
+        toast.success("로그인 성공! 잠시후 이동합니다.");
+        const token = "some_generated_token";  // 실제 사용 시 적절한 토큰을 생성하세요
         if (rememberMe) {
-          localStorage.setItem("rememberMe", email); // 자동 로그인 아이디 저장
+          localStorage.setItem("token", token);  // Remember Me 체크 시 토큰을 localStorage에 저장
+        } else {
+          sessionStorage.setItem("token", token);  // Remember Me 미체크 시 sessionStorage에 저장
         }
-        navigate('/');
+        localStorage.setItem("isAuthenticated", JSON.stringify({ email, password }));
+        
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       },
       () => {
         toast.error("아이디 또는 비밀번호가 잘못되었습니다.");
       }
     );
   };
+  
 
   const handleSignUp = () => {
     if (!validateEmail(email)) {

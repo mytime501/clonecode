@@ -11,7 +11,7 @@
 .filter-bar select,
 .filter-bar input,
 .filter-bar button {
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
