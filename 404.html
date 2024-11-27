@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page Apps for GitHub Pages</title>
+    <script type="text/javascript">
+      (function() {
+        var segmentCount = 1; // GitHub Pages에 맞는 경로 설정
+        var l = window.location;
+
+        // URL에 이미 해시가 포함되어 있으면 리다이렉션을 하지 않음
+        if (l.hash.indexOf('?') === -1) {
+          // 경로 변경: #popular 형태로 경로를 변경
+          l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + segmentCount).join('/')
+          );
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
